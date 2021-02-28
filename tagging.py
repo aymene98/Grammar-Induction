@@ -23,5 +23,8 @@ def tag(sent):
     tagger = pickle.load(open("tagger.p", "rb"))
     l = re.findall(r"[\w']+|[.,!?;]", sent)
     return tagger.tag(l)
+
+def pos_tags(sent):
+    return [t[1] for t in tag(sent)]
     
-print(tag('Hello, my name is aymene.'))
+print(pos_tags('Hello, my name is aymene.'))
