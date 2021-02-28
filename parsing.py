@@ -28,5 +28,5 @@ def parse(grammar, text, RDP=True):
         parser = ShiftReduceParser(grammar)
     
     tags_and_sents = split_text_to_sents(text)
-    sents_and_trees = [(sent[0], sent[1], parser.parse(sent[1]) for sent in tags_and_sents]
+    sents_and_trees = [(sent[0], sent[1], parser.parse(sent[1])) for sent in tags_and_sents]
     return sents_and_trees # contains tuples (words, tags, trees)
