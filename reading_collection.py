@@ -9,7 +9,7 @@ def get_corpus(number_of_files=5):
     file_names = [file for file in listdir(folder) if re.match(r'c\w\d\d', file)]
 
     corpus = ""
-    for name in file_names[:number_of_files]:
+    for name in file_names:
         corpus+= open(folder+name, "r").read()
     
     return corpus
@@ -73,11 +73,12 @@ def write_grammar(grammar):
     grammar_file.close()
 
 
-corpus = get_corpus()
-word_pos_sentences = get_sentences_word_pos(corpus)
-pos_sentences = get_pos_tag_sentences(word_pos_sentences)
-max_sentences = 150
-rules = main_algorithm(pos_sentences[:max_sentences])
-print("Grammar")
-print(rules)
-write_grammar(rules)
+#corpus = get_corpus(number_of_files=1000)
+#word_pos_sentences = get_sentences_word_pos(corpus)
+#pos_sentences = get_pos_tag_sentences(word_pos_sentences)
+#print(len(pos_sentences))
+#max_sentences = 150
+#rules = main_algorithm(pos_sentences[:max_sentences])
+#print("Grammar")
+#print(rules)
+#write_grammar(rules)
