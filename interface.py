@@ -46,7 +46,7 @@ class MyTableWidget(QWidget):
 
         # file name
         self.myTextBox = QTextEdit(self)
-        #self.myTextBox.setReadOnly(True)
+        self.myTextBox.setReadOnly(True)
 
         # Button 1 to get folder path
         self.button1 = QPushButton(self)
@@ -64,6 +64,7 @@ class MyTableWidget(QWidget):
         self.label3.setText('Analyse : ')
 
         self.analyse = QTextEdit(self)
+        self.analyse.setReadOnly(True)
 
         # Button 2 to analyse
         self.button2 = QPushButton(self)
@@ -128,14 +129,30 @@ class MyTableWidget(QWidget):
         self.myTextBox.setText(self.dir)
 
     def analyser(self):
-        file_names = [file for file in listdir(self.dir)]
         corpus = ""
-        for name in file_names:
-            corpus+= open(self.dir+"/"+name, "r").read()
-
-        grammar = parsing.get_grammar_path('./grammar.cfg')
-        result = parsing.parse(grammar, corpus)
-        self.analyse.setText(str(result))
+        if self.dir:
+            file_names = [file for file in listdir(self.dir)]
+            for name in file_names:
+                corpus+= open(self.dir+"/"+name, "r").read()
+        
+        text = self.text.toPlainText()
+        self.text.setText(text + corpus)
+        
+        g = open('./rules.txt', "r").read()
+        grammar = parsing.get_grammar_string(g)
+        
+        result = parsing.parse(grammar, self.text.toPlainText())
+        analyse = ""
+        not_parsed = ''
+        for sent in result:
+            analyse += str(sent[0]) + "\n" + str(sent[1]) + "\n" + str(sent[2]) + "\n"
+            if sent[2] == []:
+                not_parsed += str(sent[0]) + "\n" + str(sent[1]) + "\n"
+        
+        not_parsed_file = open("not_parsed_file.txt", "a")
+        not_parsed_file.write(not_parsed)
+        not_parsed_file.close()
+        self.analyse.setText(analyse)
     
     def analyser_generee(self):
         file_names = [file for file in listdir(self.dir)]

@@ -82,5 +82,4 @@ def run_thingy(sen_pos_tags):
 corpus = read_corpus('brown/')
 sen_pos_tags = retrieve_sen_pos_tags(corpus)
 rules = run_thingy(sen_pos_tags[:150])
-
 write_to_json(rules)
