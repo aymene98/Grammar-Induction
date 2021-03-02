@@ -1,0 +1,8 @@
+__pycache__
+
+brown/
+brown_tei/
+checkpoint/
+
+*.zip
+*.txt
