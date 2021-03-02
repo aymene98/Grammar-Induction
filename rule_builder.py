@@ -150,9 +150,9 @@ def build_rules(sen_pos_tags, checkpoint_interval=2000, save_dir=''):
     return str_rules
 
 
-sen_pos_tags = retrieve_corpus_sen_pos_tags('brown/')
-train_set, _ = split(sen_pos_tags)
-build_rules(train_set, checkpoint_interval=100)
+#sen_pos_tags = retrieve_corpus_sen_pos_tags('brown/')
+#train_set, _ = split(sen_pos_tags)
+#build_rules(train_set, checkpoint_interval=100)
 
 # with open('checkpoint/checkpoint.json', 'r') as f:
 #     save = json.load(f)

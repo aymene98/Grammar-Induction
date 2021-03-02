@@ -10,3 +10,21 @@ are
 ['BER']
 I am
 ['PPSS', 'BEM']
+to work
+['IN', 'NN']
+to play
+['IN', 'NN']
+to cook
+['IN', 'VB']
+to work
+['IN', 'NN']
+to play
+['IN', 'NN']
+to build
+['IN', 'NN']
+I built
+['PPSS', 'VBD']
+Furthermore, as an encouragement to revisionist thinking, it manifestly is fair to admit that any fraternity has a constitutional right to refuse to accept persons it dislikes.
+['RB', ',', 'CS', 'AT', 'NN', 'IN', 'NN', 'NN', ',', 'PPS', 'RB', 'BEZ', 'JJ', 'TO', 'VB', 'CS', 'DTI', 'NN', 'HVZ', 'AT', 'JJ', 'NN', 'TO', 'VB', 'IN', 'VB', 'NNS', 'PPS', 'VBZ', '.']
+The Unitarian clergy were an exclusive club of cultivated gentlemen -- as the term was then understood in the Back Bay -- and Parker was definitely not a gentleman, either in theology or in manners.
+['AT', 'JJ', 'NNS', 'BED', 'AT', 'JJ', 'NN', 'IN', 'VBN', 'NNS', 'QL', 'AT', 'NN', 'BEDZ', 'RB', 'VBN', 'IN', 'AT', 'JJ-TL', 'NN-TL', 'CC', 'NP', 'BEDZ', 'RB', '*', 'AT', 'NN', ',', 'CC', 'IN', 'NN', 'CC', 'IN', 'NNS', '.']

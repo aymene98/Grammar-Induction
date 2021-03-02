@@ -3,6 +3,7 @@ import re, nltk
 from PyQt5.QtWidgets import *
 from os import listdir
 import parsing
+import rule_builder
 
 class App(QMainWindow):
 
@@ -108,6 +109,7 @@ class MyTableWidget(QWidget):
         self.tab2.layout = QVBoxLayout()
         self.tab2.layout.addWidget(self.label4)
         self.tab2.layout.addWidget(self.lien_nv_corpus)
+        self.tab2.layout.addWidget(self.label5)
         self.tab2.layout.addWidget(self.button4)
         self.tab2.setLayout(self.tab2.layout)
         
@@ -120,6 +122,9 @@ class MyTableWidget(QWidget):
             None, 'Select a folder:', './', QFileDialog.ShowDirsOnly)
         self.lien_nv_corpus.setText(self.lien)
         self.label5.setText("Création de la grammaire")
+        sen_pos_tags = rule_builder.retrieve_corpus_sen_pos_tags(self.lien+'/')
+        train_set, _ = rule_builder.split(sen_pos_tags)
+        rule_builder.build_rules(train_set, checkpoint_interval=100)
         # have to create the grammar here and save it to the path './grammar_generee.cfg'
         self.label5.setText("Grammaire créée")
     
@@ -129,6 +134,33 @@ class MyTableWidget(QWidget):
         self.myTextBox.setText(self.dir)
 
     def analyser(self):
+        corpus = ""
+        if self.dir:
+            file_names = [file for file in listdir(self.dir) if re.match(r'[\w\d]+', file)]
+            for name in file_names:
+                print(self.dir+"/"+name)
+                corpus+= open(self.dir+"/"+name, "r", encoding="utf-8").read()
+        
+        text = self.text.toPlainText()
+        self.text.setText(text + corpus)
+        
+        g = open('./main-rules.txt', "r", encoding="utf-8").read()
+        grammar = parsing.get_grammar_string(g)
+        
+        result = parsing.parse(grammar, self.text.toPlainText())
+        analyse = ""
+        not_parsed = ''
+        for sent in result:
+            analyse += str(sent[0]) + "\n" + str(sent[1]) + "\n" + str(sent[2]) + "\n"
+            if sent[2] == []:
+                not_parsed += str(sent[0]) + "\n" + str(sent[1]) + "\n"
+        
+        not_parsed_file = open("not_parsed_file.txt", "a")
+        not_parsed_file.write(not_parsed)
+        not_parsed_file.close()
+        self.analyse.setText(analyse)
+    
+    def analyser_generee(self):
         corpus = ""
         if self.dir:
             file_names = [file for file in listdir(self.dir) if re.match(r'[\w\d]+', file)]
@@ -154,17 +186,6 @@ class MyTableWidget(QWidget):
         not_parsed_file.write(not_parsed)
         not_parsed_file.close()
         self.analyse.setText(analyse)
-    
-    def analyser_generee(self):
-        file_names = [file for file in listdir(self.dir)]
-        corpus = ""
-        for name in file_names:
-            corpus+= open(self.dir+"/"+name, "r").read()
-
-        grammar = parsing.get_grammar_path('./grammar_generee.cfg')
-        result = parsing.parse(grammar, corpus)
-        # needs some processing before print ...
-        self.analyse.setText(str(result))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
