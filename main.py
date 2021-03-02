@@ -36,15 +36,10 @@ def replace_pos_tag(pos_tags, to_replace, rule):
     return replacement
 
 
-def write_to_json(rules):
-    with open('out.json', 'w', encoding='utf-8') as f:
-        json.dump(rules, f, ensure_ascii=False, indent=4)
-
-
 def write_to_txt(rules):
     content = ''
     for (k, v) in rules.items():
-        content += '%s ==> %s\n' % (k, str(v))
+        content += '%s -> %s\n' % (k, ' '.join(v))
     with open('out.txt', 'w', encoding='utf-8') as f:
         f.write(content)
 
@@ -82,4 +77,5 @@ def run_thingy(sen_pos_tags):
 corpus = read_corpus('brown/')
 sen_pos_tags = retrieve_sen_pos_tags(corpus)
 rules = run_thingy(sen_pos_tags[:150])
-write_to_json(rules)
+
+write_to_txt(rules)
