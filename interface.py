@@ -131,14 +131,15 @@ class MyTableWidget(QWidget):
     def analyser(self):
         corpus = ""
         if self.dir:
-            file_names = [file for file in listdir(self.dir)]
+            file_names = [file for file in listdir(self.dir) if re.match(r'[\w\d]+', file)]
             for name in file_names:
-                corpus+= open(self.dir+"/"+name, "r").read()
+                print(self.dir+"/"+name)
+                corpus+= open(self.dir+"/"+name, "r", encoding="utf-8").read()
         
         text = self.text.toPlainText()
         self.text.setText(text + corpus)
         
-        g = open('./rules.txt', "r").read()
+        g = open('./rules.txt', "r", encoding="utf-8").read()
         grammar = parsing.get_grammar_string(g)
         
         result = parsing.parse(grammar, self.text.toPlainText())
