@@ -6,3 +6,5 @@ checkpoint/
 
 *.zip
 *.txt
+
+.vscode/
