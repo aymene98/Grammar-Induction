@@ -2,61 +2,8 @@ import json
 import nltk
 import os
 import re
-import xml.etree.ElementTree as ET
 
-
-def retrieve_corpus_sen_pos_tags(corpus_dir, limit=None):
-    uris = [corpus_dir+fn for fn in os.listdir(corpus_dir)]
-    if not limit:
-        limit = len(uris)
-    sen_pos_tags = []
-    for file_uri in uris[:limit]:
-        if file_uri.endswith('.xml'):
-            # parsing xml file
-            sen_pos_tags.extend(get_pos_tags_from_xml(file_uri))
-        else:
-            with open(file_uri, 'r', encoding='utf-8')as f:
-                content = f.read()
-                if re.match('\s*(?:(?:.+?)\/(?:.+?)(?:\s+|$))+', content):
-                    # valid corpus
-                    sen_pos_tags.extend(get_pos_tags_from_str(content))
-    return sen_pos_tags
-
-
-def get_pos_tags_from_str(corpus_content):
-    sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
-    sentences = sent_detector.tokenize(corpus_content)
-    sen_pos_tags = []
-    for s in sentences:
-        tags = re.findall('.+?/(.+?)(?:\s|$)', s.upper())
-        if len(tags) > 1:
-            sen_pos_tags.append(tags)
-    return sen_pos_tags
-
-
-def get_pos_tags_from_xml(file_uri):
-    tree = ET.parse(file_uri)
-    root = tree.getroot()
-    body = None
-    try:
-        body = root[1][0]
-    except:
-        return []
-    sen_pos_tags = []
-    for p in body:
-        for s in p:
-            pos_tags = []
-            for e in s:
-                tag = None
-                if 'type' in e.attrib:
-                    tag = e.attrib['type'] if e.attrib['type'] != 'pct' else e.text
-                elif 'pos' in e.attrib:
-                    tag = e.attrib['pos'].replace(' ', '')
-                if tag:
-                    pos_tags.append(tag)
-            if len(pos_tags) > 1:
-                sen_pos_tags.append(pos_tags)
-    return sen_pos_tags
+from corpus_utils import retrieve_corpus_sen_pos_tags
 
 
 def replace_pos_tag(pos_tags, to_replace, rule):
@@ -76,11 +23,14 @@ def replace_pos_tag(pos_tags, to_replace, rule):
     return replacement
 
 
-def rules_to_str(rules, counter):
-    content = 'S -> NT%d\n' % counter
+def rules_to_str(rules):
+    content = ''
+    nt_rules = []
     for (k, v) in rules.items():
+        nt_rules.append(k)
         content += '%s -> %s\n' % (k, ' '.join(
             [t if re.match('NT\d+', t) else '"'+t+'"' for t in v]))
+    content = 'S -> %s\n%s' % (" | ".join(nt_rules), content)
     return content
 
 
@@ -122,6 +72,7 @@ def build_rules(sen_pos_tags, checkpoint_interval=2000, save_dir=''):
         # compute n-gram frequencies
         for pos_tags in sen_pos_tags:
             for gram_len in range(2, len(pos_tags)):
+                # for gram_len in range(2, 7):
                 for gram in nltk.ngrams(pos_tags, gram_len):
                     fd[gram] += 1
 
@@ -145,14 +96,16 @@ def build_rules(sen_pos_tags, checkpoint_interval=2000, save_dir=''):
 
         counter += 1
 
-    str_rules = rules_to_str(rules, counter-1)
+    str_rules = rules_to_str(rules)
     write_to_txt(str_rules, save_dir)
     return str_rules
 
 
-sen_pos_tags = retrieve_corpus_sen_pos_tags('brown/')
-train_set, _ = split(sen_pos_tags)
-build_rules(train_set, checkpoint_interval=100)
+# sen_pos_tags = retrieve_corpus_sen_pos_tags('brown/', 100, simplify_tags=True)
+
+# print(len(sen_pos_tags))
+# train_set, _ = split(sen_pos_tags)
+# build_rules(sen_pos_tags, checkpoint_interval=100)
 
 # with open('checkpoint/checkpoint.json', 'r') as f:
 #     save = json.load(f)
@@ -163,3 +116,6 @@ build_rules(train_set, checkpoint_interval=100)
 
 # with open('rules.txt') as f:
 #     print(f.read())
+
+
+# The Fulton County Grand Jury said Friday an investigation of Atlanta's recent primary election produced `` no evidence '' that any irregularities took place
