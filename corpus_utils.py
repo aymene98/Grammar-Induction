@@ -22,15 +22,17 @@ def retrieve_corpus_sen_pos_tags(corpus_dir, sen_limit=None, remove_tokens=True,
         if sen_limit and len(sen_pos_tags) >= sen_limit:
             sen_pos_tags = sen_pos_tags[:sen_limit]
             break
-    # transforme NN-TL, JJ-TL to NN, JJ...
-    if simplify_tags:
-        sen_pos_tags = [_simplify_tokens(sen) for sen in sen_pos_tags]
-    # transform to universal tags (NN -> NOUNS, JJ -> ADJ...)
-    if universal:
-        sen_pos_tags = [_to_universal_pos_tags(sen) for sen in sen_pos_tags]
-    # only keep tags
-    if remove_tokens:
-        sen_pos_tags = [_remove_tokens(sen) for sen in sen_pos_tags]
+    for i in range(len(sen_pos_tags)):
+        # transform NN-TL, JJ-TL to NN, JJ...
+        if simplify_tags:
+            sen_pos_tags[i] = _simplify_tokens(sen_pos_tags[i])
+        # transform to universal tags (NN -> NOUN, JJ -> ADJ...)
+        if universal:
+            sen_pos_tags[i] = _to_universal_pos_tags(sen_pos_tags[i])
+        # only keep tags
+        if remove_tokens:
+            sen_pos_tags[i] = _remove_tokens(sen_pos_tags[i])
+
     return sen_pos_tags
 
 
