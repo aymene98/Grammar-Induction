@@ -101,7 +101,7 @@ def build_rules(sen_pos_tags, checkpoint_interval=2000, save_dir=''):
     return str_rules
 
 
-# sen_pos_tags = retrieve_corpus_sen_pos_tags('brown/', 100, simplify_tags=True)
+# sen_pos_tags = retrieve_corpus_sen_pos_tags('brown/', 0.7, simplify_tags=True)
 
 # print(len(sen_pos_tags))
 # train_set, _ = split(sen_pos_tags)

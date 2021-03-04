@@ -1,5 +1,9 @@
-import nltk, re, pickle
+import nltk
+import re
+import pickle
 from reading_collection import get_corpus, get_sentences_word_pos
+from corpus_utils import retrieve_corpus_sen_pos_tags
+
 
 def tagger(taged_sents):
     t0 = nltk.DefaultTagger('NN')
@@ -9,20 +13,23 @@ def tagger(taged_sents):
     t4 = nltk.NgramTagger(4, taged_sents, backoff=t3)
     return t4
 
+
 def create_tagger():
-    corpus = get_corpus(number_of_files=1000)
-    word_pos_sentences = get_sentences_word_pos(corpus)
-    split = int(0.7*len(word_pos_sentences))
-    t = tagger(word_pos_sentences[:split])
-    pickle.dump(t, open( "tagger.p", "wb"))
+    word_pos_sentences = retrieve_corpus_sen_pos_tags(
+        'brown/', remove_tokens=False, universal=True)
+    t = tagger(word_pos_sentences)
+    pickle.dump(t, open("tagger_universal.p", "wb"))
+
 
 def tag(sent):
     tagger = pickle.load(open("tagger.p", "rb"))
     l = re.findall(r"[\w']+|[.,!?;]", sent)
     return tagger.tag(l)
 
+
 def pos_tags(sent):
     return [t[1] for t in tag(sent)]
-    
+
+
 #l = pos_tags('Hello, my name is aymene.')
-#create_tagger()
+# create_tagger()
