@@ -20,7 +20,10 @@ def retrieve_corpus_sen_pos_tags(corpus_dir, sen_limit=None, remove_tokens=True,
                 if re.match('\s*(?:(?:.+?)\/(?:.+?)(?:\s+|$))+', content):
                     # valid corpus
                     sen_pos_tags.extend(_get_pos_tags_from_str(content))
-    if sen_limit:
+        if type(sen_limit) is int and len(sen_pos_tags) >= sen_limit:
+            sen_pos_tags = sen_pos_tags[:sen_limit]
+            break
+    if type(sen_limit) is float:
         sen_pos_tags = sen_pos_tags[:int(sen_limit*len(sen_pos_tags))]
     for i in range(len(sen_pos_tags)):
         # transform NN-TL, JJ-TL to NN, JJ...
