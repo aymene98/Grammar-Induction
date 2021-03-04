@@ -12,22 +12,22 @@ def get_grammar_string(string):
     return CFG.fromstring(string)
 
 # splitting the text into sentences then tagging each sentence.
-def split_text_to_sents(text):
+def split_text_to_sents(text, tagger_type, new):
     sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
     sentences = [sentence for sentence in sent_detector.tokenize(text)]
     tags_and_sents = []
     for sent in sentences:
-        tags_and_sents.append((sent, tagging.pos_tags(sent)))
+        tags_and_sents.append((sent, tagging.pos_tags(sent, tagger_type, new)))
     return tags_and_sents
 
 # using the grammar and the POS-tags that we got from the previous functions 
 # we try to find at least a parsing tree.
-def parse(grammar, text, RDP=True):
-    parser = nltk.RecursiveDescentParser(grammar)
+def parse(grammar, text, tagger_type, new, RDP=True):
+    #parser = nltk.RecursiveDescentParser(grammar)
+    parser = ShiftReduceParser(grammar)
     if not RDP:
         parser = ShiftReduceParser(grammar)
-    
-    tags_and_sents = split_text_to_sents(text)
+    tags_and_sents = split_text_to_sents(text, tagger_type, new)
     #sents_and_trees = [(sent[0], sent[1], parser.parse(sent[1])) for sent in tags_and_sents]
     sents_and_trees = []
     for sent in tags_and_sents:

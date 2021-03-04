@@ -14,21 +14,31 @@ def tagger(taged_sents):
     return t4
 
 
-def create_tagger():
+def create_tagger(name, simplify_tags=False, universal=False, path ='../brown/brown/'):
     word_pos_sentences = retrieve_corpus_sen_pos_tags(
-        'brown/', remove_tokens=False, universal=True)
+        path, remove_tokens=False, universal=universal, simplify_tags=simplify_tags)
     t = tagger(word_pos_sentences)
-    pickle.dump(t, open("tagger_universal.p", "wb"))
+    pickle.dump(t, open("./taggers/"+name, "wb"))
 
 
-def tag(sent):
-    tagger = pickle.load(open("tagger.p", "rb"))
+def tag(sent, tagger_type, new=False):
+    name = ""
+    if tagger_type == "POS-tag du corpus":
+        name = "./taggers/tagger_all"
+    if tagger_type == "POS-tag modifiés":
+        name = "./taggers/tagger_simplified"
+    if tagger_type == "POS-tag universels":
+        name = "./taggers/tagger_universal"
+    if new:
+        name+="_new" 
+    name += '.p'
+    tagger = pickle.load(open(name, "rb"))
     l = re.findall(r"[\w']+|[.,!?;]", sent)
     return tagger.tag(l)
 
 
-def pos_tags(sent):
-    return [t[1] for t in tag(sent)]
+def pos_tags(sent, tagger_type, new):
+    return [t[1] for t in tag(sent, tagger_type, new)]
 
 
 #l = pos_tags('Hello, my name is aymene.')

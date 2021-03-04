@@ -34,8 +34,9 @@ def rules_to_str(rules):
     return content
 
 
-def write_to_txt(str_rules, save_dir):
-    with open(save_dir+'rules.txt', 'w', encoding='utf-8') as f:
+def write_to_txt(str_rules, save_dir, name):
+    path = save_dir+name+'.txt'
+    with open(path, 'w', encoding='utf-8') as f:
         f.write(str_rules)
 
 
@@ -50,7 +51,7 @@ def split(in_list, train_percent=70):
     return in_list[:train_size], in_list[train_size:]
 
 
-def build_rules(sen_pos_tags, checkpoint_interval=2000, save_dir=''):
+def build_rules(sen_pos_tags, name, checkpoint_interval=2000, save_dir=''):
     counter = 0
     rules = {}
 
@@ -97,7 +98,7 @@ def build_rules(sen_pos_tags, checkpoint_interval=2000, save_dir=''):
         counter += 1
 
     str_rules = rules_to_str(rules)
-    write_to_txt(str_rules, save_dir)
+    write_to_txt(str_rules, save_dir, name)
     return str_rules
 
 
