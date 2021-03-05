@@ -210,9 +210,10 @@ class MyTableWidget(QWidget):
         self.dir = QFileDialog.getExistingDirectory(
             None, 'Select a folder:', './', QFileDialog.ShowDirsOnly)
         self.myTextBox.setText(self.dir)
+        self.get_text()
 
     def analyser_defaut(self):
-        self.get_text()
+        #self.get_text()
         self.hidden_label.setVisible(True)
         self.button2.setEnabled(False)
         self.button3.setEnabled(False)
@@ -234,7 +235,7 @@ class MyTableWidget(QWidget):
         # self.print_text(result)
 
     def analyser_generee(self):
-        self.get_text()
+        #self.get_text()
         self.hidden_label.setVisible(True)
         self.button2.setEnabled(False)
         self.button3.setEnabled(False)
@@ -271,7 +272,7 @@ class MyTableWidget(QWidget):
                 corpus += open(self.dir+"/"+name, "r", encoding="utf-8").read()
 
         text = self.text.toPlainText()
-        self.text.setText(text + corpus)
+        self.text.setText(text + "\n" + corpus)
 
     def print_text(self, result):
         analyse = ""

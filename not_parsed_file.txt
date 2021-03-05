@@ -30,3 +30,37 @@ The Unitarian clergy were an exclusive club of cultivated gentlemen -- as the te
 ['AT', 'JJ', 'NNS', 'BED', 'AT', 'JJ', 'NN', 'IN', 'VBN', 'NNS', 'QL', 'AT', 'NN', 'BEDZ', 'RB', 'VBN', 'IN', 'AT', 'JJ-TL', 'NN-TL', 'CC', 'NP', 'BEDZ', 'RB', '*', 'AT', 'NN', ',', 'CC', 'IN', 'NN', 'CC', 'IN', 'NNS', '.']
 the sun is hot
 ['AT', 'NN', 'BEZ', 'JJ']
+the sunFurthermore, as an encouragement to revisionist thinking, it manifestly is fair to admit that any fraternity has a constitutional right to refuse to accept persons it dislikes.
+['AT', 'NN', ',', 'CS', 'AT', 'NN', 'IN', 'NN', 'NN', ',', 'PPS', 'RB', 'BEZ', 'JJ', 'TO', 'VB', 'CS', 'DTI', 'NN', 'HVZ', 'AT', 'JJ', 'NN', 'TO', 'VB', 'IN', 'VB', 'NNS', 'PPS', 'VBZ', '.']
+The Unitarian clergy were an exclusive club of cultivated gentlemen -- as the term was then understood in the Back Bay -- and Parker was definitely not a gentleman, either in theology or in manners.Furthermore, as an encouragement to revisionist thinking, it manifestly is fair to admit that any fraternity has a constitutional right to refuse to accept persons it dislikes.
+['AT', 'JJ', 'NNS', 'BED', 'AT', 'JJ', 'NN', 'IN', 'VBN', 'NNS', 'QL', 'AT', 'NN', 'BEDZ', 'RB', 'VBN', 'IN', 'AT', 'JJ-TL', 'NN-TL', 'CC', 'NP', 'BEDZ', 'RB', '*', 'AT', 'NN', ',', 'CC', 'IN', 'NN', 'CC', 'IN', 'NNS', '.', 'RB', ',', 'CS', 'AT', 'NN', 'IN', 'NN', 'NN', ',', 'PPS', 'RB', 'BEZ', 'JJ', 'TO', 'VB', 'CS', 'DTI', 'NN', 'HVZ', 'AT', 'JJ', 'NN', 'TO', 'VB', 'IN', 'VB', 'NNS', 'PPS', 'VBZ', '.']
+The Unitarian clergy were an exclusive club of cultivated gentlemen -- as the term was then understood in the Back Bay -- and Parker was definitely not a gentleman, either in theology or in manners.
+['AT', 'JJ', 'NNS', 'BED', 'AT', 'JJ', 'NN', 'IN', 'VBN', 'NNS', 'QL', 'AT', 'NN', 'BEDZ', 'RB', 'VBN', 'IN', 'AT', 'JJ-TL', 'NN-TL', 'CC', 'NP', 'BEDZ', 'RB', '*', 'AT', 'NN', ',', 'CC', 'IN', 'NN', 'CC', 'IN', 'NNS', '.']
+the sun
+Furthermore, as an encouragement to revisionist thinking, it manifestly is fair to admit that any fraternity has a constitutional right to refuse to accept persons it dislikes.
+['AT', 'NN', 'RB', ',', 'CS', 'AT', 'NN', 'IN', 'NN', 'NN', ',', 'PPS', 'RB', 'BEZ', 'JJ', 'TO', 'VB', 'CS', 'DTI', 'NN', 'HVZ', 'AT', 'JJ', 'NN', 'TO', 'VB', 'IN', 'VB', 'NNS', 'PPS', 'VBZ', '.']
+The Unitarian clergy were an exclusive club of cultivated gentlemen -- as the term was then understood in the Back Bay -- and Parker was definitely not a gentleman, either in theology or in manners.
+['AT', 'JJ', 'NNS', 'BED', 'AT', 'JJ', 'NN', 'IN', 'VBN', 'NNS', 'QL', 'AT', 'NN', 'BEDZ', 'RB', 'VBN', 'IN', 'AT', 'JJ-TL', 'NN-TL', 'CC', 'NP', 'BEDZ', 'RB', '*', 'AT', 'NN', ',', 'CC', 'IN', 'NN', 'CC', 'IN', 'NNS', '.']
+the sun.
+['AT', 'NN', '.']
+Furthermore, as an encouragement to revisionist thinking, it manifestly is fair to admit that any fraternity has a constitutional right to refuse to accept persons it dislikes.
+['RB', ',', 'CS', 'AT', 'NN', 'IN', 'NN', 'NN', ',', 'PPS', 'RB', 'BEZ', 'JJ', 'TO', 'VB', 'CS', 'DTI', 'NN', 'HVZ', 'AT', 'JJ', 'NN', 'TO', 'VB', 'IN', 'VB', 'NNS', 'PPS', 'VBZ', '.']
+The Unitarian clergy were an exclusive club of cultivated gentlemen -- as the term was then understood in the Back Bay -- and Parker was definitely not a gentleman, either in theology or in manners.
+['AT', 'JJ', 'NNS', 'BED', 'AT', 'JJ', 'NN', 'IN', 'VBN', 'NNS', 'QL', 'AT', 'NN', 'BEDZ', 'RB', 'VBN', 'IN', 'AT', 'JJ-TL', 'NN-TL', 'CC', 'NP', 'BEDZ', 'RB', '*', 'AT', 'NN', ',', 'CC', 'IN', 'NN', 'CC', 'IN', 'NNS', '.']
+the sun.
+['AT', 'NN', '.']
+the sun
+Furthermore, as an encouragement to revisionist thinking, it manifestly is fair to admit that any fraternity has a constitutional right to refuse to accept persons it dislikes.
+['AT', 'NN', 'RB', ',', 'CS', 'AT', 'NN', 'IN', 'NN', 'NN', ',', 'PPS', 'RB', 'BEZ', 'JJ', 'TO', 'VB', 'CS', 'DTI', 'NN', 'HVZ', 'AT', 'JJ', 'NN', 'TO', 'VB', 'IN', 'VB', 'NNS', 'PPS', 'VBZ', '.']
+The Unitarian clergy were an exclusive club of cultivated gentlemen -- as the term was then understood in the Back Bay -- and Parker was definitely not a gentleman, either in theology or in manners.
+['AT', 'JJ', 'NNS', 'BED', 'AT', 'JJ', 'NN', 'IN', 'VBN', 'NNS', 'QL', 'AT', 'NN', 'BEDZ', 'RB', 'VBN', 'IN', 'AT', 'JJ-TL', 'NN-TL', 'CC', 'NP', 'BEDZ', 'RB', '*', 'AT', 'NN', ',', 'CC', 'IN', 'NN', 'CC', 'IN', 'NNS', '.']
+the sun is hot.
+['AT', 'NN', 'BEZ', 'JJ', '.']
+Furthermore, as an encouragement to revisionist thinking, it manifestly is fair to admit that any fraternity has a constitutional right to refuse to accept persons it dislikes.
+['RB', ',', 'CS', 'AT', 'NN', 'IN', 'NN', 'NN', ',', 'PPS', 'RB', 'BEZ', 'JJ', 'TO', 'VB', 'CS', 'DTI', 'NN', 'HVZ', 'AT', 'JJ', 'NN', 'TO', 'VB', 'IN', 'VB', 'NNS', 'PPS', 'VBZ', '.']
+The Unitarian clergy were an exclusive club of cultivated gentlemen -- as the term was then understood in the Back Bay -- and Parker was definitely not a gentleman, either in theology or in manners.
+['AT', 'JJ', 'NNS', 'BED', 'AT', 'JJ', 'NN', 'IN', 'VBN', 'NNS', 'QL', 'AT', 'NN', 'BEDZ', 'RB', 'VBN', 'IN', 'AT', 'JJ-TL', 'NN-TL', 'CC', 'NP', 'BEDZ', 'RB', '*', 'AT', 'NN', ',', 'CC', 'IN', 'NN', 'CC', 'IN', 'NNS', '.']
+the sun is hot
+['AT', 'NN', 'BEZ', 'JJ']
+the sun is out
+['AT', 'NN', 'BEZ', 'RP']
