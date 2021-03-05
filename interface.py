@@ -188,7 +188,7 @@ class MyTableWidget(QWidget):
         sen_pos_tags = corpus_utils.retrieve_corpus_sen_pos_tags(
             self.lien+'/', sen_limit=100, simplify_tags=simplify_tags, universal=universal)
         self.rule_worker = rule_builder.RuleBuilder(
-            sen_pos_tags=sen_pos_tags, filename='rules'+name)
+            sen_pos_tags=sen_pos_tags, filename='./rules/rules'+name+".txt")
         self.rule_worker.start()
         self.rule_worker.progress_update.connect(self.on_rule_worker_progress)
         self.rule_worker.finished.connect(self.on_rule_worker_finish)
