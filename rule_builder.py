@@ -149,7 +149,7 @@ class RuleBuilder(QThread):
 
             counter += 1
 
-        str_rules = rules_to_str(rules)
+        str_rules = self.rules_to_str(rules)
         self.write_to_txt(str_rules)
         os.remove('checkpoint.json')
 
