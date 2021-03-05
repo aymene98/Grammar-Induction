@@ -7,14 +7,14 @@ sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
 
 
 def retrieve_corpus_sen_pos_tags(corpus_dir, sen_limit=None, remove_tokens=True, simplify_tags=False, universal=False):
-    uris = [corpus_dir+fn for fn in os.listdir(corpus_dir) if re.match(r'[\w\d]+', fn)]
+    uris = [corpus_dir +
+            fn for fn in os.listdir(corpus_dir) if re.match(r'[\w\d]+', fn)]
     sen_pos_tags = []
     for file_uri in uris:
         if file_uri.endswith('.xml'):
             # parsing xml file
             sen_pos_tags.extend(_get_pos_tags_from_xml(file_uri))
         else:
-            print(file_uri)
             with open(file_uri, 'r', encoding='utf-8')as f:
                 content = f.read()
                 if re.match('\s*(?:(?:.+?)\/(?:.+?)(?:\s+|$))+', content):

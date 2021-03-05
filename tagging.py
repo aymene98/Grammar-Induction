@@ -1,6 +1,7 @@
 import nltk
 import re
 import pickle
+from PyQt5.QtCore import QThread
 from reading_collection import get_corpus, get_sentences_word_pos
 from corpus_utils import retrieve_corpus_sen_pos_tags
 
@@ -14,11 +15,11 @@ def tagger(taged_sents):
     return t4
 
 
-def create_tagger(name, simplify_tags=False, universal=False, path ='../brown/brown/'):
-    word_pos_sentences = retrieve_corpus_sen_pos_tags(
-        path, remove_tokens=False, universal=universal, simplify_tags=simplify_tags)
-    t = tagger(word_pos_sentences)
-    pickle.dump(t, open("./taggers/"+name, "wb"))
+# def create_tagger(name, simplify_tags=False, universal=False, path='../brown/brown/'):
+#     word_pos_sentences = retrieve_corpus_sen_pos_tags(
+#         path, remove_tokens=False, universal=universal, simplify_tags=simplify_tags)
+#     t = tagger(word_pos_sentences)
+#     pickle.dump(t, open("./taggers/"+name, "wb"))
 
 
 def tag(sent, tagger_type, new=False):
@@ -30,16 +31,29 @@ def tag(sent, tagger_type, new=False):
     if tagger_type == "POS-tag universels":
         name = "./taggers/tagger_universal"
     if new:
-        name+="_new" 
+        name += "_new"
     name += '.p'
-    tagger = pickle.load(open(name, "rb"))
-    l = re.findall(r"[\w']+|[.,!?;]", sent)
-    return tagger.tag(l)
+    with open(name, "rb") as f:
+        tagger = pickle.load(f)
+        l = re.findall(r"[\w']+|[.,!?;]", sent)
+        return tagger.tag(l)
 
 
 def pos_tags(sent, tagger_type, new):
     return [t[1] for t in tag(sent, tagger_type, new)]
 
 
-#l = pos_tags('Hello, my name is aymene.')
-# create_tagger()
+class TaggerCreator(QThread):
+    def __init__(self, parent=None, corpus_path='brown/', filename='tagger.p', simplify_tags=False, universal=False) -> None:
+        super().__init__(parent)
+        self.corpus_path = corpus_path
+        self.filename = filename
+        self.simplify_tags = simplify_tags
+        self.universal = universal
+
+    def run(self):
+        word_pos_sentences = retrieve_corpus_sen_pos_tags(
+            self.corpus_path, remove_tokens=False, universal=self.universal, simplify_tags=self.simplify_tags)
+        t = tagger(word_pos_sentences)
+        with open("./taggers/"+self.filename, "wb") as f:
+            pickle.dump(t, f)
