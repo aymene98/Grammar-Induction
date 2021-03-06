@@ -92,7 +92,7 @@ class MyTableWidget(QWidget):
         self.button2.clicked.connect(self.analyser_defaut)
 
         self.button3 = QPushButton(self)
-        self.button3.setText('Analyser avec grammaire génerée')
+        self.button3.setText('Analyser avec grammaire générée')
         self.button3.clicked.connect(self.analyser_generee)
 
         # Create first tab

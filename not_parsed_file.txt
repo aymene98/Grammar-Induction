@@ -64,3 +64,5 @@ the sun is hot
 ['AT', 'NN', 'BEZ', 'JJ']
 the sun is out
 ['AT', 'NN', 'BEZ', 'RP']
+the sun is out
+['AT', 'NN', 'BEZ', 'RP']
